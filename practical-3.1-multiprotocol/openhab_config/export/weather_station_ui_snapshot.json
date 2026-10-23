@@ -1,0 +1,58 @@
+﻿{
+  "name": "Weather Station",
+  "type": "MQTT",
+  "bridgeLabel": "Local Mosquitto",
+  "availability": {
+    "topic": "weather-station/status",
+    "onlinePayload": "ONLINE",
+    "offlinePayload": "OFFLINE"
+  },
+  "channels": [
+    {
+      "id": "temperature",
+      "label": "Temperature",
+      "stateTopic": "weather-station/temperature",
+      "type": "Number",
+      "min": -50,
+      "max": 100
+    },
+    {
+      "id": "humidity",
+      "label": "Humidity",
+      "stateTopic": "weather-station/humidity",
+      "type": "Number",
+      "min": 0,
+      "max": 100
+    },
+    {
+      "id": "pressure",
+      "label": "Pressure",
+      "stateTopic": "weather-station/pressure",
+      "type": "Number",
+      "min": 800,
+      "max": 1200
+    },
+    {
+      "id": "rssi",
+      "label": "Signal Strength",
+      "stateTopic": "weather-station/rssi",
+      "type": "Number",
+      "min": -120,
+      "max": 0
+    },
+    {
+      "id": "status",
+      "label": "Connection Status",
+      "stateTopic": "weather-station/status",
+      "type": "String"
+    }
+  ],
+  "items": [
+    "WeatherTemperature",
+    "WeatherHumidity",
+    "WeatherPressure",
+    "WeatherRssi",
+    "WeatherStatus"
+  ],
+  "note": "Manually reconstructed snapshot of the working UI configuration. This is documentation, not a native OpenHAB REST export or directly importable configuration."
+}
