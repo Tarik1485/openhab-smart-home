@@ -1,5 +1,5 @@
-﻿Number WeatherTemperature "Temperature [%.1f °C]" { channel="mqtt:topic:weather_station:temperature" }
-Number WeatherHumidity "Humidity [%.1f %%]" { channel="mqtt:topic:weather_station:humidity" }
-Number WeatherPressure "Pressure [%.1f hPa]" { channel="mqtt:topic:weather_station:pressure" }
-Number WeatherRssi "Signal Strength [%.0f dBm]" { channel="mqtt:topic:weather_station:rssi" }
-String WeatherStatus "Connection Status [%s]" { channel="mqtt:topic:weather_station:status" }
+﻿Number WeatherTemperature "Temperature [%.1f °C]" { channel="mqtt:topic:local_mosquitto:weather_station:temperature" }
+Number WeatherHumidity "Humidity [%.1f %%]" { channel="mqtt:topic:local_mosquitto:weather_station:humidity" }
+Number WeatherPressure "Pressure [%.1f hPa]" { channel="mqtt:topic:local_mosquitto:weather_station:pressure" }
+Number WeatherRssi "Signal Strength [%.0f dBm]" { channel="mqtt:topic:local_mosquitto:weather_station:rssi" }
+String WeatherStatus "Connection Status [%s]" { channel="mqtt:topic:local_mosquitto:weather_station:status" }

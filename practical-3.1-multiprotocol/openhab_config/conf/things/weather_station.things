@@ -1,4 +1,4 @@
-﻿Thing mqtt:topic:weather_station "Weather Station" (mqtt:broker:local_mosquitto) {
+﻿Thing mqtt:topic:local_mosquitto:weather_station "Weather Station" (mqtt:broker:local_mosquitto) {
     Channels:
         Type number : temperature "Temperature" [
             stateTopic="weather-station/temperature"
