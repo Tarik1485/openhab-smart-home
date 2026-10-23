@@ -1,0 +1,5 @@
+﻿Number:Temperature Weather_Temperature "Temperature [%.1f °C]" <temperature> { channel="mqtt:topic:weather_station:temperature" }
+Number:Dimensionless Weather_Humidity "Humidity [%.1f %%]" <humidity> { channel="mqtt:topic:weather_station:humidity" }
+Number:Pressure Weather_Pressure "Pressure [%.1f hPa]" <pressure> { channel="mqtt:topic:weather_station:pressure" }
+Number Weather_RSSI "Signal Strength [%.0f dBm]" <qualityofservice> { channel="mqtt:topic:weather_station:rssi" }
+String Weather_Status "Connection Status [%s]" { channel="mqtt:topic:weather_station:status" }

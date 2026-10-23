@@ -1,0 +1,19 @@
+﻿// Link weather station MQTT channels to OpenHAB Items
+Thing mqtt:topic:weather_station "Weather Station" (mqtt:broker:local_mosquitto) {
+    Channels:
+        Type number : temperature "Temperature" [
+            stateTopic="weather-station/temperature"
+        ]
+        Type number : humidity "Humidity" [
+            stateTopic="weather-station/humidity"
+        ]
+        Type number : pressure "Pressure" [
+            stateTopic="weather-station/pressure"
+        ]
+        Type number : rssi "Signal Strength" [
+            stateTopic="weather-station/rssi"
+        ]
+        Type string : status "Connection Status" [
+            stateTopic="weather-station/status"
+        ]
+}
