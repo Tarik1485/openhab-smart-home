@@ -1,0 +1,8 @@
+﻿# Example configuration for the educational OpenHAB project.
+# Local MQTT listener without TLS. Use only on a trusted local machine.
+listener 1884 127.0.0.1
+allow_anonymous false
+
+# Configure password_file separately on your own machine.
+# Never commit the actual password file to GitHub.
+# password_file C:/path/to/private/password_file

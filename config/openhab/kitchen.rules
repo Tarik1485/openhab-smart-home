@@ -1,0 +1,36 @@
+﻿rule "Керування освітленням за сценами"
+when
+    Item Scene_Morning received command ON or
+    Item Scene_Day received command ON or
+    Item Scene_Evening received command ON or
+    Item Scene_Night received command ON
+then
+    if (receivedCommand == ON) {
+        switch (triggeringItem.name) {
+            case "Scene_Morning": {
+                Scene_Day.postUpdate(OFF)
+                Scene_Evening.postUpdate(OFF)
+                Scene_Night.postUpdate(OFF)
+                Kitchen_Light.sendCommand(80)
+            }
+            case "Scene_Day": {
+                Scene_Morning.postUpdate(OFF)
+                Scene_Evening.postUpdate(OFF)
+                Scene_Night.postUpdate(OFF)
+                Kitchen_Light.sendCommand(100)
+            }
+            case "Scene_Evening": {
+                Scene_Morning.postUpdate(OFF)
+                Scene_Day.postUpdate(OFF)
+                Scene_Night.postUpdate(OFF)
+                Kitchen_Light.sendCommand(50)
+            }
+            case "Scene_Night": {
+                Scene_Morning.postUpdate(OFF)
+                Scene_Day.postUpdate(OFF)
+                Scene_Evening.postUpdate(OFF)
+                Kitchen_Light.sendCommand(10)
+            }
+        }
+    }
+end

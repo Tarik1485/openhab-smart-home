@@ -1,0 +1,9 @@
+﻿Number Kitchen_Temperature "Температура на кухні [%.1f °C]"
+Number Kitchen_Humidity "Вологість на кухні [%.1f %%]"
+String Kitchen_Motion "Рух на кухні [%s]"
+Dimmer Kitchen_Light "Освітлення кухні [%d %%]"
+
+Switch Scene_Morning "Сцена — Ранок"
+Switch Scene_Day "Сцена — День"
+Switch Scene_Evening "Сцена — Вечір"
+Switch Scene_Night "Сцена — Ніч"

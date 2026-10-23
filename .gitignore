@@ -1,0 +1,26 @@
+﻿# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Logs
+*.log
+
+# OpenHAB private data
+userdata/
+secrets/
+credentials.json
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
