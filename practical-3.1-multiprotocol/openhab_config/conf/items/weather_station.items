@@ -1,5 +1,26 @@
-﻿Number:Temperature Weather_Temperature "Temperature [%.1f °C]" <temperature> { channel="mqtt:topic:weather_station:temperature" }
+﻿// MQTT weather station
+Number:Temperature Weather_Temperature "Temperature [%.1f °C]" <temperature> { channel="mqtt:topic:weather_station:temperature" }
 Number:Dimensionless Weather_Humidity "Humidity [%.1f %%]" <humidity> { channel="mqtt:topic:weather_station:humidity" }
 Number:Pressure Weather_Pressure "Pressure [%.1f hPa]" <pressure> { channel="mqtt:topic:weather_station:pressure" }
-Number Weather_RSSI "Signal Strength [%.0f dBm]" <qualityofservice> { channel="mqtt:topic:weather_station:rssi" }
-String Weather_Status "Connection Status [%s]" { channel="mqtt:topic:weather_station:status" }
+Number Weather_RSSI "MQTT RSSI [%.0f dBm]" <qualityofservice> { channel="mqtt:topic:weather_station:rssi" }
+String Weather_Status "MQTT Status [%s]" { channel="mqtt:topic:weather_station:status" }
+
+// HTTP API
+Number:Temperature HTTP_Temperature "HTTP Temperature [%.1f °C]" <temperature>
+Number:Dimensionless HTTP_Humidity "HTTP Humidity [%.1f %%]" <humidity>
+Number:Pressure HTTP_Pressure "HTTP Pressure [%.1f hPa]" <pressure>
+String HTTP_Status "HTTP API Status [%s]"
+String HTTP_LastResponse "HTTP Last Response [%s]"
+
+// BLE emulator — simulated data, not a physical Bluetooth device
+Number:Temperature BLE_Temperature "BLE Temperature [%.1f °C]" <temperature>
+Number BLE_RSSI "BLE RSSI [%.0f dBm]" <qualityofservice>
+Number BLE_Battery "BLE Battery [%.0f %%]" <battery>
+String BLE_Status "BLE Status [%s]"
+
+// Analytics
+Number:Temperature Weather_AverageTemperature "Average Temperature [%.1f °C]" <temperature>
+Number Weather_TemperatureDeviation "Temperature Deviation [%.2f °C]"
+String System_ProtocolStatus "Protocol Status [%s]"
+Number System_ErrorCount "Error Count [%d]"
+DateTime System_LastUpdate "Last Update [%1$tF %1$tT]"

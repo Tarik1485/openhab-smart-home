@@ -1,0 +1,72 @@
+// Multi-protocol weather station — OpenHAB Rules DSL
+// BLE values are simulated; no physical BLE adapter is required.
+
+var Number bleRssi = -45
+var Number bleBattery = 100
+var Number previousTemperature = 0
+var Number temperatureSamples = 0
+var Number temperatureTotal = 0
+
+rule "Initialize weather station"
+when
+    System started
+then
+    BLE_Status.postUpdate("SIMULATED")
+    BLE_RSSI.postUpdate(-45)
+    BLE_Battery.postUpdate(100)
+    HTTP_Status.postUpdate("API configured")
+    System_ProtocolStatus.postUpdate("MQTT / HTTP / BLE emulator")
+    System_ErrorCount.postUpdate(0)
+    logInfo("WeatherStation", "Weather station rules initialized")
+end
+
+rule "Simulate BLE sensor every 25 seconds"
+when
+    Time cron "0/25 * * * * ?"
+then
+    bleRssi = -30 - (Math::random * 41).intValue
+    if (bleRssi > -30) bleRssi = -30
+    if (bleRssi < -70) bleRssi = -70
+
+    if (bleBattery > 0) {
+        bleBattery = bleBattery - 1
+    }
+
+    BLE_RSSI.postUpdate(bleRssi)
+    BLE_Battery.postUpdate(bleBattery)
+    BLE_Temperature.postUpdate(18 + (Math::random * 100).intValue / 10.0)
+    BLE_Status.postUpdate(if (bleBattery > 0) "SIMULATED ONLINE" else "LOW BATTERY")
+
+    logInfo("WeatherStation", "BLE emulator RSSI=" + bleRssi + " dBm, battery=" + bleBattery + "%")
+end
+
+rule "Calculate temperature analytics"
+when
+    Item Weather_Temperature changed or
+    Item HTTP_Temperature changed or
+    Item BLE_Temperature changed
+then
+    var Number currentTemperature = 0
+    var Number sampleCount = 0
+    var Number totalTemperature = 0
+
+    if (Weather_Temperature.state instanceof Number) {
+        totalTemperature = totalTemperature + (Weather_Temperature.state as Number).doubleValue
+        sampleCount = sampleCount + 1
+    }
+    if (HTTP_Temperature.state instanceof Number) {
+        totalTemperature = totalTemperature + (HTTP_Temperature.state as Number).doubleValue
+        sampleCount = sampleCount + 1
+    }
+    if (BLE_Temperature.state instanceof Number) {
+        totalTemperature = totalTemperature + (BLE_Temperature.state as Number).doubleValue
+        sampleCount = sampleCount + 1
+    }
+
+    if (sampleCount > 0) {
+        Weather_AverageTemperature.postUpdate(totalTemperature / sampleCount)
+        System_LastUpdate.postUpdate(new DateTimeType())
+    }
+
+    logInfo("WeatherStation", "Temperature analytics updated; sample count=" + sampleCount)
+end

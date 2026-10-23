@@ -24,3 +24,8 @@ credentials.json
 # OS
 .DS_Store
 Thumbs.db
+Python cache and generated weather history
+
+pycache/
+*.py[cod]
+practical-3.1-multiprotocol/http_weather_history.csv
