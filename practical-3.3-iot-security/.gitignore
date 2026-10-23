@@ -1,0 +1,15 @@
+# Private cryptographic keys
+private/
+*.key
+
+# Temporary and generated files
+__pycache__/
+*.pyc
+.DS_Store
+
+# Local environment
+.venv/
+venv/
+.env
+
+# Do not ignore public certificates or firmware demo files
