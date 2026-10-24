@@ -1,0 +1,31 @@
+Group gIndustrial "Industrial IoT"
+Group gIndustrialSensors "Sensors" (gIndustrial)
+Group gIndustrialEnergy "Energy" (gIndustrial)
+Group gIndustrialOEE "Production Efficiency" (gIndustrial)
+Group gIndustrialAlarms "Alarms" (gIndustrial)
+
+Number Industrial_Temperature "Motor Temperature [%.1f °C]" (gIndustrialSensors) { channel="mqtt:topic:industrialBroker:industrialPLC:temperature" }
+Number Industrial_Vibration "Bearing Vibration [%.2f mm/s]" (gIndustrialSensors) { channel="mqtt:topic:industrialBroker:industrialPLC:vibration" }
+Number Industrial_Pressure "Hydraulic Pressure [%.1f bar]" (gIndustrialSensors) { channel="mqtt:topic:industrialBroker:industrialPLC:pressure" }
+
+Number Industrial_TotalPower "Total Power [%.2f kW]" (gIndustrialEnergy) { channel="mqtt:topic:industrialBroker:industrialPLC:power" }
+Number Industrial_Phase1Power "Phase 1 Power [%.2f kW]" (gIndustrialEnergy) { channel="mqtt:topic:industrialBroker:industrialPLC:phase1_power" }
+Number Industrial_Phase2Power "Phase 2 Power [%.2f kW]" (gIndustrialEnergy) { channel="mqtt:topic:industrialBroker:industrialPLC:phase2_power" }
+Number Industrial_Phase3Power "Phase 3 Power [%.2f kW]" (gIndustrialEnergy) { channel="mqtt:topic:industrialBroker:industrialPLC:phase3_power" }
+
+Number Industrial_Availability "Availability [%.3f]" (gIndustrialOEE) { channel="mqtt:topic:industrialBroker:industrialPLC:availability" }
+Number Industrial_Performance "Performance [%.3f]" (gIndustrialOEE) { channel="mqtt:topic:industrialBroker:industrialPLC:performance" }
+Number Industrial_Quality "Quality [%.3f]" (gIndustrialOEE) { channel="mqtt:topic:industrialBroker:industrialPLC:quality" }
+Number Industrial_OEE "OEE [%.3f]" (gIndustrialOEE) { channel="mqtt:topic:industrialBroker:industrialPLC:oee" }
+Number Industrial_WearIndex "Wear Index [%.1f %%]" (gIndustrialSensors) { channel="mqtt:topic:industrialBroker:industrialPLC:wear_index" }
+
+Number Industrial_Produced "Produced Units [%d]" (gIndustrialOEE) { channel="mqtt:topic:industrialBroker:industrialPLC:produced" }
+Number Industrial_Good "Good Units [%d]" (gIndustrialOEE) { channel="mqtt:topic:industrialBroker:industrialPLC:good" }
+
+String Industrial_ConveyorSections "Conveyor Sections [%s]" (gIndustrialSensors) { channel="mqtt:topic:industrialBroker:industrialPLC:conveyor_sections" }
+String Industrial_AlarmStatus "Industrial Alarm Status [%s]" (gIndustrialAlarms) { channel="mqtt:topic:industrialBroker:industrialPLC:alarms" }
+
+Switch Industrial_HighVibrationAlarm "High Vibration Alarm" (gIndustrialAlarms)
+Switch Industrial_HighTemperatureAlarm "High Temperature Alarm" (gIndustrialAlarms)
+Switch Industrial_PressureAlarm "Hydraulic Pressure Alarm" (gIndustrialAlarms)
+Switch Industrial_ConveyorAlarm "Conveyor Stopped Alarm" (gIndustrialAlarms)

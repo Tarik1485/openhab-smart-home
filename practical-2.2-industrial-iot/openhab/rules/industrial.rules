@@ -1,0 +1,53 @@
+rule "Industrial - High Vibration Alarm"
+when
+    Item Industrial_Vibration changed or
+    Item Industrial_Vibration received update
+then
+    if (Industrial_Vibration.state instanceof Number &&
+        (Industrial_Vibration.state as Number).doubleValue > 4.0) {
+        Industrial_HighVibrationAlarm.postUpdate(ON)
+    } else {
+        Industrial_HighVibrationAlarm.postUpdate(OFF)
+    }
+end
+
+rule "Industrial - High Temperature Alarm"
+when
+    Item Industrial_Temperature changed or
+    Item Industrial_Temperature received update
+then
+    if (Industrial_Temperature.state instanceof Number &&
+        (Industrial_Temperature.state as Number).doubleValue > 75.0) {
+        Industrial_HighTemperatureAlarm.postUpdate(ON)
+    } else {
+        Industrial_HighTemperatureAlarm.postUpdate(OFF)
+    }
+end
+
+rule "Industrial - Hydraulic Pressure Alarm"
+when
+    Item Industrial_Pressure changed or
+    Item Industrial_Pressure received update
+then
+    if (Industrial_Pressure.state instanceof Number) {
+        val pressure = (Industrial_Pressure.state as Number).doubleValue
+        if (pressure < 100.0 || pressure > 140.0) {
+            Industrial_PressureAlarm.postUpdate(ON)
+        } else {
+            Industrial_PressureAlarm.postUpdate(OFF)
+        }
+    }
+end
+
+rule "Industrial - Conveyor Stopped Alarm"
+when
+    Item Industrial_ConveyorSections changed or
+    Item Industrial_ConveyorSections received update
+then
+    val sections = Industrial_ConveyorSections.state.toString.split(",")
+    if (sections.exists[section | section.trim == "0"]) {
+        Industrial_ConveyorAlarm.postUpdate(ON)
+    } else {
+        Industrial_ConveyorAlarm.postUpdate(OFF)
+    }
+end

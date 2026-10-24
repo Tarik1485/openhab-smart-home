@@ -1,0 +1,28 @@
+Bridge mqtt:broker:industrialBroker "Industrial MQTT Broker" [
+    host="127.0.0.1",
+    port=1886,
+    secure=false,
+    username="",
+    password="",
+    clientID="openhab-industrial"
+] {
+    Thing topic industrialPLC "Industrial PLC Edge Data" {
+        Channels:
+            Type number : temperature "Motor Temperature" [ stateTopic="industrial/temperature" ]
+            Type number : vibration "Bearing Vibration" [ stateTopic="industrial/vibration" ]
+            Type number : pressure "Hydraulic Pressure" [ stateTopic="industrial/pressure" ]
+            Type number : power "Total Power" [ stateTopic="industrial/power" ]
+            Type number : phase1_power "Phase 1 Power" [ stateTopic="industrial/phase1_power" ]
+            Type number : phase2_power "Phase 2 Power" [ stateTopic="industrial/phase2_power" ]
+            Type number : phase3_power "Phase 3 Power" [ stateTopic="industrial/phase3_power" ]
+            Type number : availability "Availability" [ stateTopic="industrial/availability" ]
+            Type number : performance "Performance" [ stateTopic="industrial/performance" ]
+            Type number : quality "Quality" [ stateTopic="industrial/quality" ]
+            Type number : oee "OEE" [ stateTopic="industrial/oee" ]
+            Type number : wear_index "Wear Index" [ stateTopic="industrial/wear_index" ]
+            Type number : produced "Produced Units" [ stateTopic="industrial/produced" ]
+            Type number : good "Good Units" [ stateTopic="industrial/good" ]
+            Type string : conveyor_sections "Conveyor Sections" [ stateTopic="industrial/conveyor_sections" ]
+            Type string : alarms "Industrial Alarms" [ stateTopic="industrial/alarms" ]
+    }
+}
